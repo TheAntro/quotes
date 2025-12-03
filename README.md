@@ -1,1 +1,3 @@
-Part of the Devops with Docker -course (devopswithdocker.com)
+Part of the [Devops with Docker -course](https://devopswithdocker.com)
+
+Deployed app: [quotes.antro.dev](https://quotes.antro.dev)
