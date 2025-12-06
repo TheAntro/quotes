@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
   const quote = randomQuotes.at(
     Math.floor(Math.random() * randomQuotes.length)
   );
-  res.send(quote);
+  res.send(`<h1>${quote}</h1>`);
 });
 
 app.listen(8080, () => {

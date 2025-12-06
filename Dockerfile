@@ -2,10 +2,15 @@ FROM node:lts-alpine
 
 EXPOSE 8080
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --only=production && \
+  adduser -S appuser && \
+  chown -R appuser .
 
-COPY . .
+COPY index.js node_modules ./
+
+USER appuser
+
 CMD ["node", "index.js"]
