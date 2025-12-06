@@ -1,15 +1,21 @@
+FROM node:lts-alpine AS deps
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm ci --omit=dev
+
+
 FROM node:lts-alpine
 
 EXPOSE 8080
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci --only=production && \
-  adduser -S appuser && \
+COPY --from=deps /app/node_modules /app/index.js ./
+RUN adduser -S appuser && \
   chown -R appuser .
-
-COPY index.js node_modules ./
 
 USER appuser
 
