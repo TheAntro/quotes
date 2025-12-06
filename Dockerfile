@@ -13,7 +13,9 @@ EXPOSE 8080
 
 WORKDIR /app
 
-COPY --from=deps /app/node_modules /app/index.js ./
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/index.js ./index.js
+
 RUN adduser -S appuser && \
   chown -R appuser .
 
